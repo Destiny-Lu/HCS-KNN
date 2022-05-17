@@ -5,6 +5,7 @@ import torch
 import random
 import numpy as np
 import argparse
+import os
 
 from torch.utils.data import TensorDataset
 from transformers import AutoTokenizer
@@ -224,6 +225,16 @@ def convert_examples_to_roberta_features(tokenizer, examples, task, max_seq_len,
 
 # %%
 if __name__ == '__main__':
+    folders = ['./model','./Models', './data']
+    for folder in folders:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+            
+    relations = ['Temporal', 'Comparison', 'Contingency', 'Expansion', 'pdtb2_4']
+    for relation in relations:
+        if not os.path.exists('./data/' + relation):
+            os.makedirs('./data/' + relation)
+
     parser = argparse.ArgumentParser()
 
     ## Required parameters
